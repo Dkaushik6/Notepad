@@ -9,22 +9,30 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoManager;
 
 public class GUIT implements ActionListener {
 
 	JFrame window;
 	JTextArea textArea;
 	JScrollPane scrollPane;
+	boolean wordWrapOn = false;
 	JMenuBar menuBar;
 	JMenu menuFile , menuEdit,menuFormat,menuColor;
 	JMenuItem iNew,iOpen,iSave,iSaveAs,iExit;
+	JMenuItem iWrap,iFontArial,iFontCSMS,iFontSS, iFontSize8,iFontSize12,iFontSize16,iFontSize20,iFontSize24,iUndo,iRedo;
+	JMenu menuFont,menuFontSize;
 	
 	JMenuItem iColor1,iColor2,iColor3,iColor4;
 	
 	FunctionFile file=new FunctionFile(this);
 	FunctionColor color = new FunctionColor(this);
 	FunctionFormat format= new FunctionFormat(this);
+	FunctionEdit edit= new FunctionEdit(this);
 	
+	UndoManager um= new UndoManager();
 		
 	public static void main(String[] args) {
 		
@@ -35,8 +43,13 @@ public class GUIT implements ActionListener {
 		createTextArea();
 		createMenuBar();
 		createFileMenu();
-		
+		createFormatMenu();
 		createColorMenu();
+		createEditMenu();
+		
+		format.selectedFont="Arial";
+		format.createFont(20);
+		format.wordWrap();
 		
 		window.setVisible(true);
 	}
@@ -47,6 +60,14 @@ public class GUIT implements ActionListener {
 	}
 	public void createTextArea() {
 		textArea= new JTextArea();
+		textArea.getDocument().addUndoableEditListener(
+				new UndoableEditListener() {
+					public void undoableEditHappened(UndoableEditEvent e) {
+						um.addEdit(e.getEdit());
+					}
+				}
+				);
+		
 		scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		window.add(scrollPane);
@@ -118,10 +139,23 @@ public class GUIT implements ActionListener {
 		menuColor.add(iColor4);
 		
 	}
+	public void createEditMenu() {
+		
+		iUndo = new JMenuItem("Undo");
+		iUndo.addActionListener(this);
+		iUndo.setActionCommand("Undo");
+		menuEdit.add(iUndo);
+		
+		iRedo = new JMenuItem("Redo");
+		iRedo.addActionListener(this);
+		iRedo.setActionCommand("Redo");
+		menuEdit.add(iRedo);
+		
+	}
 		
 	public void createFormatMenu() {
 
-		iWrap new JMenuItem("Word Wrap: Off");
+		iWrap= new JMenuItem("Word Wrap: Off");
 		iWrap.addActionListener(this);
 		iWrap.setActionCommand("Word Wrap");
 		menuFormat.add(iWrap);
@@ -129,82 +163,52 @@ public class GUIT implements ActionListener {
 		menuFont = new JMenu("Font");
 		menuFormat.add(menuFont);
 
-		iFontArial new MenuItem("Arial");
-
-
+		
+		iFontArial= new JMenuItem("Arial");
 		iFontArial.addActionListener(this);
 		iFontArial.setActionCommand("Arial");
 		menuFont.add(iFontArial);
 
-		iFontCSMS new MenuItem("Comic Sans Ms");
+		iFontCSMS =new JMenuItem("Comic Sans Ms");
 		iFontCSMS.addActionListener(this);
 		iFontCSMS.setActionCommand("Comic Sans MS");
 		menuFont.add(iFontCSMS);
 
-		iFontTRN new MenuItem("Times New Roman");
-		iFontTRN.addActionListener(this);
-		iFontTRN.setActionCommand("Times New Roman");
-		menuFont.add(iFontTRN);
+		iFontSS =new JMenuItem("Sans serif");
+		iFontSS.addActionListener(this);
+		iFontSS.setActionCommand("Sans serif");
+		menuFont.add(iFontSS);
 
 		menuFontSize = new JMenu("Font Size");
 		menuFormat.add(menuFontSize);
 
-		 }
-		
-        
-		
-		FontCSMS new MenuItem("Comic Sans MS");
-		iFontCSMS.addActionListener(this);
-		FontCSMS.setActionCommand("Comic Sans MS"); 
-		menuFont.add(iFontCSMS);
-		
-		FontAriel new MenuItem("Ariel");
-		iFontAriel.addActionListener(this);
-		FontCSMS.setActionCommand("Ariel"); 
-		menuFont.add(iFontAriel);
-
-		Font TNR new MenuItem("Times New Roman");
-		iFont TNR.addActionListener(this);
-		iFont TNR.setActionCommand("Times New Roman");
-		menuFont.add(iFont TNR);
-
-		menuFontSize new JMenu("Font Size"); 
-		menuFormat.add(menuFontSize);
-
-		iFontSize8 new JMenuItem("8");
+		 
+		iFontSize8 =new JMenuItem("8");
 		iFontSize8.addActionListener(this);
 		iFontSize8.setActionCommand("size8");
 		menuFontSize.add(iFontSize8);
 		
-		iFontSize12 new MenuItem("12");
+		iFontSize12 =new JMenuItem("12");
 		iFontSize12.addActionListener(this);
 		iFontSize12.setActionCommand("size12");
 		menuFontSize.add(iFontSize12);
-
-		iFontSize16 new JMenuItem("16");
+ 
+		iFontSize16= new JMenuItem("16");
 		iFontSize16.addActionListener(this);
 		iFontSize16.setActionCommand("size16");
 		menuFontSize.add(iFontSize16);
 
-		1FontSize20 new JMenuItem("20");
+		iFontSize20 =new JMenuItem("20");
 		iFontSize20.addActionListener(this);
 		iFontSize20.setActionCommand("size20");
 		menuFontSize.add(iFontSize20);
 
-		1FontSize24new MenuItem("24");
-		1FontSize24.addActionListener(this);
-		1FontSize24.setActionCommand("Times New Roman);
+		iFontSize24=new JMenuItem("24");
+		iFontSize24.addActionListener(this);
+		iFontSize24.setActionCommand("size24");
 		menuFontSize.add(iFontSize24);
 
-		iFontSize28 new MenuItem("8");
-		iFontSize28.addActionListener(this);
-		iFontSize28.setActionCommand("Times New Roman");
-		menuFontSize.add(iFontSize28);
-		
-		
-		
-		
-		
+	
 		
 	}
 	
@@ -218,6 +222,19 @@ public class GUIT implements ActionListener {
 		case"Save": file.save(); break;
 		case"SaveAs": file.saveAs(); break;
 		case"Exit": file.exit(); break;
+		
+		case"Word Wrap": format.wordWrap(); break;
+		case"Arial": format.setFont(command); break;
+		case"Comic Sans MS": format.setFont(command); break;
+		case"Sans serif": format.setFont(command); break;
+		case"size8": format.createFont(8); break;
+		case"size12": format.createFont(12); break;
+		case"size16": format.createFont(16); break;
+		case"size20": format.createFont(20); break;
+		case"size24": format.createFont(24); break;
+		//case"Bold":format.setFont()
+		case "Undo":edit.undo(); break;
+		case "Redo":edit.redo(); break;
 		case "White":color.changeColor(command); break;
 		case "Red":color.changeColor(command); break;
 		case "Blue":color.changeColor(command); break;
