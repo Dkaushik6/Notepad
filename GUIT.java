@@ -208,7 +208,6 @@ public class GUIT implements ActionListener {
 		iFontSize24.setActionCommand("size24");
 		menuFontSize.add(iFontSize24);
 
-	
 		
 	}
 	
@@ -222,7 +221,6 @@ public class GUIT implements ActionListener {
 		case"Save": file.save(); break;
 		case"SaveAs": file.saveAs(); break;
 		case"Exit": file.exit(); break;
-		
 		case"Word Wrap": format.wordWrap(); break;
 		case"Arial": format.setFont(command); break;
 		case"Comic Sans MS": format.setFont(command); break;

@@ -16,18 +16,18 @@ public class FunctionColor {
 			gui.textArea.setForeground(Color.black);
 			break;
 		case "Red":
-			gui.window.getContentPane().setBackground(Color.yellow);
-			gui.textArea.setBackground(Color.MAGENTA);
-			gui.textArea.setForeground(Color.green);
+			gui.window.getContentPane().setBackground(Color.red);
+			gui.textArea.setBackground(Color.red);
+			gui.textArea.setForeground(Color.black);
 			break;
 		case "Blue":
-			gui.window.getContentPane().setBackground(Color.pink);
-			gui.textArea.setBackground(Color.gray);
+			gui.window.getContentPane().setBackground(Color.blue);
+			gui.textArea.setBackground(Color.blue);
 			gui.textArea.setForeground(Color.yellow);
 			break;
 		case "Black":
-			gui.window.getContentPane().setBackground(Color.cyan);
-			gui.textArea.setBackground(Color.blue);
+			gui.window.getContentPane().setBackground(Color.black);
+			gui.textArea.setBackground(Color.black);
 			gui.textArea.setForeground(Color.MAGENTA);
 			break;
 		}
