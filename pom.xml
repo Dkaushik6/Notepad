@@ -42,7 +42,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>GUIT</mainClass> <!-- The main class that starts your GUI -->
+              <mainClass>abc.GUIT</mainClass> <!-- The main class that starts your GUI -->
             </manifest>
           </archive>
         </configuration>
