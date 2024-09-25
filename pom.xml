@@ -11,10 +11,10 @@
 
   <build>
     <!-- Source Directory and Resources -->
-    <sourceDirectory>src/abc</sourceDirectory>
+    <sourceDirectory>src/abc/java</sourceDirectory>
     <resources>
       <resource>
-        <directory>src/abc</directory>
+        <directory>src/abc/java</directory>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
