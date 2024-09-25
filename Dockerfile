@@ -15,5 +15,3 @@ ENTRYPOINT ["java", "GUIT"]
 
 # Expose any ports your application needs
 EXPOSE 80
-
-~    
