@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy the pom.xml and source code into the container
 COPY pom.xml .
-COPY src ./src
+COPY . . 
 
 # Build the application (this will create the JAR file)
 RUN mvn clean package
