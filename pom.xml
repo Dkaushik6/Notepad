@@ -29,7 +29,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>17</release> <!-- Set this to Java 21 -->
+          <release>21</release> <!-- Set this to Java 21 -->
         </configuration>
       </plugin>
 
