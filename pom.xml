@@ -12,11 +12,11 @@
   <build>
     <!-- Source Directory and Resources -->
     <sourceDirectory>src/main/java</sourceDirectory>
-<!--     <resources>
+    <resources>
       <resource>
         <directory>src/main/resources</directory> <!-- Corrected to src/main/resources -->
       </resource>
-    </resources> -->
+    </resources> 
 
     <!-- Plugins -->
     <plugins>
