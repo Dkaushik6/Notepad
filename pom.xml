@@ -16,7 +16,7 @@
       <resource>
         <directory>src/main/resources</directory> <!-- Corrected to src/main/resources -->
       </resource>
-    </resources>
+    </resources> 
 
     <!-- Plugins -->
     <plugins>
@@ -40,7 +40,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>src.main.GUIT</mainClass> <!-- The main class that starts your GUI -->
+              <mainClass>src.main.java.GUIT</mainClass> <!-- The main class that starts your GUI -->
             </manifest>
           </archive>
         </configuration>
