@@ -1,9 +1,9 @@
 # Use a base image with OpenJDK
 FROM openjdk:21-jdk-slim
 
-# Install Maven and necessary libraries
+# Install Maven, necessary libraries, and procps
 RUN apt-get update && \
-    apt-get install -y maven xvfb libxrender1 libxtst6 libxi6 && \
+    apt-get install -y maven xvfb libxrender1 libxtst6 libxi6 procps && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
