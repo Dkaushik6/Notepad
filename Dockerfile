@@ -24,7 +24,7 @@ RUN ls -l target/
 COPY target/*.jar app.jar
 
 # Start Xvfb and run the application with DISPLAY set to use the virtual display
-ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & DISPLAY=:99 java -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & sleep 2; DISPLAY=:99 java -jar app.jar"]
 
 # Expose any ports your application needs (adjust as necessary)
 EXPOSE 8081
