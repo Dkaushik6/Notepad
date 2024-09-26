@@ -18,4 +18,4 @@ COPY target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Expose any ports your application needs (adjust as necessary)
-EXPOSE 80
+EXPOSE 8081
