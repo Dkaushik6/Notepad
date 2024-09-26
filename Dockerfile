@@ -14,7 +14,7 @@ WORKDIR /app
 COPY target/GUI-0.0.1-SNAPSHOT.jar .
 
 # Debugging step: list files in the target directory
-RUN -l target/
+RUN target/
 
 # Copy the JAR file to the current directory
 COPY target/*.jar app.jar
