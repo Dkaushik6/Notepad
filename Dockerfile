@@ -11,20 +11,16 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy the pom.xml and source code into the container
-COPY pom.xml ./
-COPY src ./src
-
-# Build the application (this will create the JAR file)
-RUN mvn clean package
+COPY target/GUI-0.0.1-SNAPSHOT.jar .
 
 # Debugging step: list files in the target directory
-RUN ls -l target/
+RUN -l target/
 
 # Copy the JAR file to the current directory
 COPY target/*.jar app.jar
 
 # Start Xvfb and run the application with DISPLAY set to use the virtual display
-ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & sleep 2; DISPLAY=:99 java -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar GUI-0.0.1-SNAPSHOT.jar"]
 
 # Expose any ports your application needs (adjust as necessary)
 EXPOSE 8081
