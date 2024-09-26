@@ -1,12 +1,12 @@
-# Use a base image with Maven and OpenJDK
-FROM maven:3.9.9-amazoncorretto-21
+# Use a Debian-based Maven image with OpenJDK
+FROM maven:3.9.9-openjdk-21-slim
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the pom.xml and source code into the container
-COPY pom.xml ./ 
-COPY . . 
+COPY pom.xml ./
+COPY src ./src
 
 # Build the application (this will create the JAR file)
 RUN mvn clean package
