@@ -1,7 +1,7 @@
 # Use a base image with OpenJDK
 FROM openjdk:21-jdk-slim
 
-# Install Maven
+# Install Maven and necessary libraries
 RUN apt-get update && \
     apt-get install -y maven xvfb libxrender1 libxtst6 libxi6 && \
     apt-get clean && \
@@ -16,6 +16,9 @@ COPY src ./src
 
 # Build the application (this will create the JAR file)
 RUN mvn clean package
+
+# Debugging step: list files in the target directory
+RUN ls -l target/
 
 # Copy the JAR file to the current directory
 COPY target/*.jar app.jar
